@@ -38,7 +38,7 @@ import cv2
 #cap = cv2.VideoCapture(0)
 img_1='/Users/harshitruwali/Pictures/ProfilePhoto.jpeg'
 
-cap = cv2.imread(img_1)
+har = cv2.imread(img_1)
 
 #face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 face_cascade = cv2.CascadeClassifier('/anaconda3/lib/python3.7/site-packages/cv2/data/haarcascade_frontalcatface_extended.xml')
@@ -46,14 +46,14 @@ face_cascade = cv2.CascadeClassifier('/anaconda3/lib/python3.7/site-packages/cv2
 
 while 1:
     #ret, img = cap.read()
-    img = cv2.imread(cap)
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    img_1 = cv2.imread(har)
+    gray = cv2.cvtColor(img_1, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
     for (x,y,w,h) in faces:
-        cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
+        cv2.rectangle(img_1,(x,y),(x+w,y+h),[225],2)
         roi_gray = gray[y:y+h, x:x+w]
-        roi_color = img[y:y+h, x:x+w]
+        roi_color = img_1[y:y+h, x:x+w]
 
         if (NULL):
             print("null error")
@@ -71,7 +71,7 @@ while 1:
         break
     '''
 
-cv2.imshow('img',img)
+cv2.imshow('img',img_1)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 '''

@@ -15,14 +15,14 @@ cap = cv2.VideoCapture(0)
 # or
 #img_1='/Users/harshitruwali/Pictures/ProfilePhoto.jpeg'
 
-cap = cv2.imread(img_1)
+#cap = cv2.imread(img_1)
 
 
 # In[ ]:
 
 
+#face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-
 #or
 #face_cascade = cv2.CascadeClassifier('/anaconda3/lib/python3.7/site-packages/cv2/data/haarcascade_frontalcatface_extended.xml')
 
