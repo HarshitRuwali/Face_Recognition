@@ -27,9 +27,11 @@ cv2.destroyAllWindows()
 
 import numpy as np
 import cv2
-
+from PIL import Image
+#from sys import args
 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+args = vars(ap.parse_args())
 
 cascade_fn = args.get('--cascade', "../../data/haarcascades/haarcascade_frontalface_alt.xml")
 
@@ -41,6 +43,7 @@ cap = cv2.VideoCapture(0)
 
 while 1:
     ret, img = cap.read()
+    #img = Image.open()
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
