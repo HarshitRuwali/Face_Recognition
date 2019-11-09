@@ -5,39 +5,42 @@ import numpy as np
 
 video_capture = cv2.VideoCapture(0)
 
-# Load a sample picture and learn how to recognize it.
+# training an image
 harshit_image = face_recognition.load_image_file("53895966.jpg")
 harshit_face_encoding = face_recognition.face_encodings(harshit_image)[0]
 
-# Load a second sample picture and learn how to recognize it.
 jobs_image = face_recognition.load_image_file("stevejobs.png")
 jobs_face_encoding = face_recognition.face_encodings(jobs_image)[0]
 
-# Create arrays of known face encodings and their names
+priyansh_image = face_recognition.load_image_file("priyansh-09-11-19.jpg")
+priyansh_face_encoding = face_recognition.face_encodings(priyansh_image)[0]
+
+# image encodings 
 known_face_encodings = [
     harshit_face_encoding,
-    jobs_face_encoding
+    jobs_face_encoding,
+    priyansh_face_encoding
 ]
 
 known_face_names = [
     "Harshit Ruwali",
-    "Steve Jobs"
+    "Steve Jobs",
+    "Priyansh Saxena"
 ]
 
-# Initialize some variables
 face_locations = []
 face_encodings = []
 face_names = []
 process_this_frame = True
 
 while True:
-    # Grab a single frame of video
+    #taking an frame from an the camera
     ret, frame = video_capture.read()
 
     # Resize frame of video to 1/4 size for faster face recognition processing
     small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
 
-    # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
+    # Convert the image from BGR color 
     rgb_small_frame = small_frame[:, :, ::-1]
 
     # Only process every other frame of video to save time
@@ -52,12 +55,6 @@ while True:
             matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
             name = "Unknown"
 
-            # # If a match was found in known_face_encodings, just use the first one.
-            # if True in matches:
-            #     first_match_index = matches.index(True)
-            #     name = known_face_names[first_match_index]
-
-            # Or instead, use the known face with the smallest distance to the new face
             face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
             best_match_index = np.argmin(face_distances)
             if matches[best_match_index]:
